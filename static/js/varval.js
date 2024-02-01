@@ -1,0 +1,12 @@
+LOGIN_ERROR_TEXT = "Incorrect username or password, try again"
+SOMETHING_WRONG = "Something went wrong, please try again"
+API_SIGNUP_URL = "/signup"
+API_LOGIN_URL = "/login"
+API_ADMIN_LOGIN_URL = "/admin_login"
+API_APPLY_LEAVE_URL = "/apply_leave"
+API_ADMIN_DASHBOARD = "/admin_dashboard"
+API_MY_LEAVE = "/my_leave"
+API_ADMIN_DASHBOARD = "/admin_dashboard"
+API_FORGOT_PASSWORD_URL = '/forgot_password'
+API_RESET_PASSWORD_URL = '/reset_password'
+API_VERIFY_ACCOUNT_URL = '/verify_account'

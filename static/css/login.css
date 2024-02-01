@@ -1,0 +1,166 @@
+body {
+   margin: 0;
+   font-family: 'Roboto', sans-serif;
+   background-color: #878b93;
+}
+
+.container {
+   margin: auto;
+   padding: 0 25px;
+}
+
+.navbar {
+   background-color: #0d56a5;
+   padding: 15px 0;
+   color: white;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-list {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+   display: flex;
+   justify-content: flex-start; /* Align links to the left */
+}
+
+.nav-link {
+   text-decoration: none;
+   color: white;
+   margin-right: 20px;
+   font-size: 16px;
+   transition: color 0.3s;
+}
+
+.nav-link:hover {
+   color: #0056b3;
+}
+
+.auth {
+   max-width: 40%; /* Set your desired max-width */
+   margin: 0 auto; /* Center the form container horizontally */
+   padding: 20px; /* Add padding for better appearance */
+}
+
+.apply-leave-form {
+   max-width: 40%; /* Set your desired max-width */
+   margin: 0 auto; /* Center the form container horizontally */
+   padding: 20px; /* Add padding for better appearance */
+}
+
+.dashboard {
+   background-color: white;
+   padding: 20px;
+   border-radius: 8px;
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.apply-leave-form {
+   background-color: #b8c7c5;
+   padding: 70px;
+   border-radius: 8px;
+   box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+   margin-top: 25px;
+}
+
+.auth {
+   background-color: #b8c7c5;
+   padding: 70px;
+   border-radius: 8px;
+   box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+   margin-top: 25px;
+}
+
+form {
+   max-width: 100%;
+   margin: left;
+}
+
+label {
+   display: block;
+   margin-bottom: 8px;
+   font-weight:bold;
+}
+
+input,
+textarea {
+   width: 100%;
+   padding: 8px;
+   margin-bottom: 16px;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   box-sizing: border-box;
+}
+
+button {
+   background-color: #042f5e;
+   color: white;
+   padding: 10px 15px;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   font-size: 16px;
+}
+
+button:hover {
+   background-color: #0056b3;
+}
+
+.applied-leave {
+   background-color: white;
+   padding: 20px;
+   border-radius: 8px;
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+   margin-top: 20px;
+   display: none;
+}
+
+.loader-overlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   z-index: 1000; /* Ensure it's above other content */
+}
+
+.loader {
+   position: relative;
+   width: 164px;
+   height: 164px;
+ }
+ .loader::before , .loader::after {
+   content: '';
+   position: absolute;
+   width: 40px;
+   height: 40px;
+   background-color: #fff;
+   left: 50%;
+   top: 50%;
+   animation: rotate 1s ease-in infinite;
+}
+.loader::after {
+ width: 20px;
+ height: 20px;
+ background-color: #FF3D00;
+ animation: rotate 1s ease-in infinite, moveY 1s ease-in infinite ;
+}
+
+@keyframes moveY {
+ 0% , 100% {top: 10%}
+ 45% , 55% {top: 59%}
+ 60% {top: 40%}
+}
+@keyframes rotate {
+ 0% { transform: translate(-50%, -100%) rotate(0deg) scale(1 , 1)}
+ 25%{ transform: translate(-50%, 0%) rotate(180deg) scale(1 , 1)}
+ 45% , 55%{ transform: translate(-50%, 100%) rotate(180deg) scale(3 , 0.5)}
+ 60%{ transform: translate(-50%, 100%) rotate(180deg) scale(1, 1)}
+ 75%{ transform: translate(-50%, 0%) rotate(270deg) scale(1 , 1)}
+ 100%{ transform: translate(-50%, -100%) rotate(360deg) scale(1 , 1)}
+}
+   

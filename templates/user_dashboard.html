@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/my_leave.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Leave Management App</title>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="/my_profile" class="nav-link">My Profile</a></li>
+                <li><a href="/user_dashboard" class="nav-link">Home</a></li>
+                <li><a href="/apply_leave" class="nav-link">Apply Leave</a></li>
+                <li><a href="/my_leave" class="nav-link">My Leaves</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-3">
+        <section class="dashboard">
+            <h2>Welcome to Dashboard</h2>
+
+            <!-- Dashboard Containers -->
+            <div class="dashboard-container">
+                <div class="dashboard-item-1">
+                    <h3>Total Leaves</h3>
+                    <p>{{ total_leaves_taken }} / {{ total_leaves }}</p>
+                </div>
+
+                <div class="dashboard-item-2">
+                    <h3>Planned Leaves</h3>
+                    <p>{{ total_planned_taken }} / {{ total_planned }}</p>
+                </div>
+
+                <div class="dashboard-item-3">
+                    <h3>Unplanned Leaves</h3>
+                    <p>{{ total_unplanned_taken }} / {{ total_unplanned }}</p>
+                </div>
+
+                <div class="dashboard-item-4">
+                    <h3>LWP</h3>
+                    <p>{{ total_lwp }}</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard">
+            <h2>Leaves by Month</h2>
+            <canvas id="leavesByMonthChart" width="400" height="116"></canvas>
+        </section>
+    </div>
+
+    <script>
+        var leavesByMonthData = "{{ leaves_by_month}}";
+        var plannedleavesByMonthData = "{{ planned_leaves_by_month}}";
+        var unplannedleavesByMonthData = "{{ unplanned_leaves_by_month}}";
+        var lwpByMonthData = "{{ lwp_by_month}}";
+
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        leavesByMonthData = JSON.parse(leavesByMonthData);
+        plannedleavesByMonthData = JSON.parse(plannedleavesByMonthData);
+        unplannedleavesByMonthData = JSON.parse(unplannedleavesByMonthData);
+        lwpByMonthData = JSON.parse(lwpByMonthData);
+
+        var ctx = document.getElementById('leavesByMonthChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+            labels: months,
+            datasets: [
+                {
+                    label: 'Leaves Taken',
+                    data: leavesByMonthData,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Planned Leaves',
+                    data: plannedleavesByMonthData,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Unplanned Leaves',
+                    data: unplannedleavesByMonthData,
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'LWP',
+                    data: lwpByMonthData,
+                    backgroundColor: 'rgba(48, 165, 25, 0.2)',
+                    borderColor: 'rgba(48, 165, 25, 1)',
+                    borderWidth: 1
+                }
+            ]
+            
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

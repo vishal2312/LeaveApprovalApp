@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/login.css') }}">
+    <script defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js"></script>
+    <script src="{{url_for('static',path='/js/admin_login.js')}}"></script>
+    <script src="{{url_for('static',path='/js/varval.js')}}"></script>
+    <script type="text/javascript">
+        API_URL = "{{API_URL}}"
+        APP_URL = "{{APP_URL}}"
+      </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#" class="nav-link">Home</a></li>
+                <li><a href="#" class="nav-link">Manage Leaves</a></li>
+                <li><a href="#" class="nav-link">Add Account</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-3">
+        <section class = 'auth' x-data="adminLogin()">
+            <!-- <div x-show="isLoading" class="loader-overlay">
+                <div class="loader"></div>
+            </div> -->
+            <h1>Admin Login</h1>
+            {% if user %}
+                <p>Hello, {{ user }}! <a href="/logout">Logout</a></p>
+            {% else %}
+                <form action="/" method="post" @submit.prevent="submitForm('{{return_page}}','{{web_app_url}}','{{url_for('admin_login')}}')">
+                    <label for="username">Username:</label>
+                    <input type="text" id="email" name="email" x-model="user.email" required>
+                    <br>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" x-model="user.password" required>
+                    <br>
+                    <button type="submit">Login</button>
+                    <br>
+                    <br>
+                    <a href="/login">User Login</a>
+                </form>
+            {% endif %}
+        </section>
+    </div>
+</body>
+</html>

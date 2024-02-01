@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/apply_leave.css') }}">
+    <script defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js"></script>
+    <script src="{{url_for('static',path='/js/apply_leave.js')}}"></script>
+    <script src="{{url_for('static',path='/js/varval.js')}}"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js"></script>
+    <script type="text/javascript">
+        API_URL = "{{API_URL}}"
+        APP_URL = "{{APP_URL}}"
+    </script>
+    <title>Leave Management App</title>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container">
+        <ul class="nav-list">
+            <li><a href="/my_profile" class="nav-link">My Profile</a></li>
+            <li><a href="/user_dashboard" class="nav-link">Home</a></li>
+            <li><a href="/apply_leave" class="nav-link">Apply Leave</a></li>
+            <li><a href="/my_leave" class="nav-link">My Leaves</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-3">
+    
+    <section class="apply-leave-form" x-data="applyLeave('{{ name }}', '{{ email }}')">
+        <div x-show="isLoading" class="loader-overlay">
+            <div class="loader"></div>
+        </div>
+        <h1>Apply Leave</h1>
+    
+        <form action="/" method="post" @submit.prevent="() => leaveRequest()">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" x-model="user.name" required readonly x-init="user.name = '{{ name }}'">
+                <span class="error" x-show="errors.name">{{ errors.name }}</span>
+    
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" x-model="user.email" required readonly x-init="user.email = '{{ email }}'">
+                <span class="error" x-show="errors.email">{{ errors.email }}</span>
+
+
+                <label for="leavetype">Leave Type:</label>
+                <select id="leave_type" name="leave_type" x-model="user.leave_type" required @blur="validateLeaveType">
+                    <option value="">Select Leave Type</option>
+                    <option value="Planned">Planned</option>
+                    <option value="Unplanned">Unplanned</option>
+                    <option value="LWP">LWP</option>
+                </select>
+                <span class="error" x-show="errors.leave_type">{{ errors.leave_type }}</span>
+
+
+                <label for="fromdate">From Date:</label>
+                <input type="date" id="from_date" name="from_date" x-model="user.from_date" required @blur="validateFromDate">
+                <span class="error" x-show="errors.from_date">{{ errors.from_date }}</span>
+
+                <label for="toDate">To Date:</label>
+                <input type="date" id="to_date" name="to_date"x-model="user.to_date" required @blur="validateToDate">
+                <span class="error" x-show="errors.to_date">{{ errors.to_date }}</span>
+
+                <label for="days">No. of Days:</label>
+                <input type="text" id="days" name="days" x-model="user.no_of_days" required @blur="validateNoOfDays">
+                <span class="error" x-show="errors.no_of_days">{{ errors.no_of_days }}</span>
+
+                <label for="reason">Reason:</label>
+                <textarea id="reason" name="reason" rows="5" x-model="user.reason" required @blur="validateReason"></textarea>
+                <span class="error" x-show="errors.reason">{{ errors.reason }}</span>
+                <br>
+                <button type="submit" x-bind:disabled="isLoading">Apply Leave</button>
+            </div>
+            
+        </form>
+    </section>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

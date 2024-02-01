@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/my_leave.css') }}">
+    <title>Leave Management App</title>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container">
+        <ul class="nav-list">
+            <li><a href="/my_profile" class="nav-link">My Profile</a></li>
+            <li><a href="/user_dashboard" class="nav-link">Home</a></li>
+            <li><a href="/apply_leave" class="nav-link">Apply Leave</a></li>
+            <li><a href="/my_leave" class="nav-link">My Leaves</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-3">
+    <section class="my-leave">
+        <h2>My Leaves</h2>
+
+        <div class="leave-info">
+            <label for="total_leaves">Total - 24 (Planned - 15, Unplanned - 9)</label>
+
+            <label for="leaves_taken">Used - {{leaves_taken}} (Planned - {{planned_leaves_taken}}, Unplanned - {{unplanned_leaves_taken}})</label>
+
+            <label for="leaves_remaining">Remaining - {{leaves_remaining}} (Planned - {{planned_leaves_rem}}, Unplanned - {{unplanned_leaves_rem}})</label>
+        </div>
+
+        <table id="leaveTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Applied On</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Leave Type</th>
+                    <th>From Date</th>
+                    <th>To Date</th>
+                    <th>No. Of Days</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in leave_history %}
+                <tr>
+                    <td>{{ data.id }}</td>
+                    <td>{{ data.applied_on }}</td>
+                    <td>{{ data.name }}</td>
+                    <td>{{ data.email }}</td>
+                    <td>{{ data.leave_type }}</td>
+                    <td>{{ data.from_date }}</td>
+                    <td>{{ data.to_date }}</td>
+                    <td>{{ data.no_of_days }}</td>
+                    <td class="reason-cell">{{ data.reason }}</td>
+                    <td>{{ data.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</div>
+
+</body>
+</html>

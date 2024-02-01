@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" :class="{ 'dark': dark }" x-data="data()">
+  
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet">
+    <!-- <link
+        href="{{url_for('static',path='/css/app.css')}}"
+        rel="stylesheet"
+    /> -->
+    <script defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js"></script>
+    <!-- <script src="{{url_for('static',path='/js/init-alpine.js')}}"></script> -->
+    <script src="{{url_for('static',path='/js/varval.js')}}"></script>
+    <script type="text/javascript">
+      API_URL = "{{API_URL}}"
+    </script>
+    {% block jscomponant %}{% endblock %}
+    <style>
+      [x-cloak] {
+          display: none;
+      }
+  </style>
+  </head>
+  <body class="bg-gray-50 dark:bg-gray-900">
+    {% block content %}{% endblock %}
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/login.css') }}">
+    <script defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js"></script>
+    <script src="{{url_for('static',path='/js/signup.js')}}"></script>
+    <script src="{{url_for('static',path='/js/varval.js')}}"></script>
+    <script type="text/javascript">
+        API_URL = "{{API_URL}}"
+        APP_URL = "{{APP_URL}}"
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="/admin_dashboard" class="nav-link">Home</a></li>
+                <li><a href="/manage_leave" class="nav-link">Manage Leaves</a></li>
+                <li><a href="/signup" class="nav-link">Add Account</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-3">
+        <section class='auth' x-data="userSignup()">
+            <!-- <div x-show="isLoading" class="loader" id="loader"></div> -->
+            <div x-show="isLoading" class="loader-overlay">
+                <div class="loader"></div>
+            </div>
+            <h1> Create New Account </h1>
+            <form action="/" method="post"  @submit.prevent="submitForm()">
+                <div class="container">
+                    <label>Name : </label>
+                    <input type="text" placeholder="Enter Name" name="name" x-model="user.name" required>
+
+                    <label>Email : </label>
+                    <input type="text" placeholder="Enter Email" name="email" x-model="user.email" required>
+
+                    <label>Password : </label>
+                    <input type="password" placeholder="Enter Password" name="password" x-model="user.password" required>
+
+                    <button type="submit" x-bind:disabled="isLoading">Signup</button>
+                </div>
+            </form>
+            
+            <div x-show="isModalOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50" style="display:none;">
+                <div class="flex items-center justify-center min-h-screen">
+                    <div class="bg-white p-8 rounded shadow-md">
+                        <h2 class="text-2xl font-semibold mb-4">Success!</h2>
+                        <p>Account has been created successfully.</p>
+                        <p>Add a mail to verify account has been sent to the user.</p>
+                        <!-- <button @click="closeModal" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">Close</button> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,128 @@
+html {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    height: 100vh;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+}
+
+body {
+    font-family: Verdana, sans-serif;
+}
+
+.cal-body {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.cal-data {
+    width: 70%;
+}
+
+.month {
+    padding: 10px 10px;
+    width: 40%;
+    background: #d75027;
+    text-align: center;
+}
+
+.month p {
+    font-size: 50px;
+    color: white;
+    margin: 0;
+    padding: 4px;
+}
+
+.month ul {
+    margin: 0;
+    padding: 0;
+}
+
+.month ul li {
+    color: white;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    /* font-weight: 900; */
+}
+
+.month .prev {
+    float: left;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+.month .next {
+    float: right;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+.weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color: #ce7256;
+}
+
+.weekdays li {
+    display: inline-block;
+    width: 13.6%;
+    color: #ffe5e5;
+    text-align: center;
+}
+
+.days {
+    padding: 10px 0;
+    background: #eee;
+    margin: 0;
+}
+
+.days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 13.6%;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 15px;
+    color: #777;
+    margin-left: 3px;
+}
+
+.active {
+    padding: 5px;
+    background: #d75027;
+    color: white !important
+}
+/* Add media queries for smaller screens */
+
+@media screen and (max-width:720px) {
+    .weekdays li,
+    .days li {
+        width: 12.1%;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .weekdays li,
+    .days li {
+        width: 12.5%;
+    }
+    .days li .active {
+        padding: 2px;
+    }
+}
+
+@media screen and (max-width: 290px) {
+    .weekdays li,
+    .days li {
+        width: 12.2%;
+    }
+}

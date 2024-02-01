@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/my_leave.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="/my_profile" class="nav-link">My Profile</a></li>
+                <li><a href="/user_dashboard" class="nav-link">Home</a></li>
+                <li><a href="/apply_leave" class="nav-link">Apply Leave</a></li>
+                <li><a href="/my_leave" class="nav-link">My Leaves</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="container mt-3">
+        <section class="my-leave">
+            <h1>My Profile</h1>
+            <p>Name: {{ user_data.name }}</p>
+            <p>Email: {{ user_data.email }}</p>
+            <a href="/login">Logout</a>
+            
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/my_leave.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+    <script src="{{url_for('static',path='/js/manage_leave.js')}}"></script>
+    <script src="{{url_for('static',path='/js/varval.js')}}"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <title>Leave Management App</title>
+    <script type="text/javascript">
+        API_URL = "{{API_URL}}"
+        APP_URL = "{{APP_URL}}"
+    </script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="/admin_dashboard" class="nav-link">Home</a></li>
+                <li><a href="/manage_leave" class="nav-link">Manage Leaves</a></li>
+                <li><a href="/signup" class="nav-link">Add Account</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    {{items.status}}
+    <div class="container mt-3">
+        <section class="my-leave">
+            <div class="loader-overlay" id="loaderOverlay">
+                <div class="loader"></div>
+            </div>
+            <h2>Manage Leaves</h2>
+            <!-- Filters -->
+            <div class="filters">
+                <label for="statusFilter">Status:</label>
+                <select id="statusFilter" onchange="applyFilters()">
+                    <option value="all">All</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Rejected">Rejected</option>
+                </select>
+
+                <label for="nameFilter">User Name:</label>
+                <input type="text" id="nameFilter" oninput="applyFilters()" placeholder="Enter name">
+                <button id="clearNameButton" class="clear-name-button" onclick="clearNameFilter()">X</button>
+
+                <label for="dateFilter">Date Range:</label>
+                <input type="text" id="dateFilter" oninput="applyFilters()" placeholder="Select date range">
+                <button id="clearDateButton" class="clear-date-button" onclick="clearDateFilter()">X</button>
+
+                <button class="excel-btn" onclick="downloadExcel()" id="downloadExcelBtn">Download Excel</button>
+
+            </div>
+
+            <table id="leaveTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Applied On</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Leave Type</th>
+                        <th>From Date</th>
+                        <th>To Date</th>
+                        <th>No. Of Days</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                    <tbody id="leaveTableBody">
+                        
+                    </tbody>
+            </table>
+
+            <div id="pagination">
+                <button id="prevPage">Previous</button>
+                <span id="currentPage">Page 1</span>
+                <button id="nextPage">Next</button>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
